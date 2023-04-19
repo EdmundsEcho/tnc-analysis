@@ -1,0 +1,13 @@
+/Users/edmund/Programming-Local/tnc-analysis/lib/target/release/deps/polars_row-23913c2269deb762.rmeta: /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/lib.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encode.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/mod.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/fixed.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/variable.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/row.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/utils.rs
+
+/Users/edmund/Programming-Local/tnc-analysis/lib/target/release/deps/libpolars_row-23913c2269deb762.rlib: /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/lib.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encode.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/mod.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/fixed.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/variable.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/row.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/utils.rs
+
+/Users/edmund/Programming-Local/tnc-analysis/lib/target/release/deps/polars_row-23913c2269deb762.d: /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/lib.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encode.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/mod.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/fixed.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/variable.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/row.rs /Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/utils.rs
+
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/lib.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encode.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/mod.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/fixed.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/encodings/variable.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/row.rs:
+/Users/edmund/Programming-Local/tnc-analysis/polars/polars/polars-row/src/utils.rs:

@@ -1,0 +1,44 @@
+[package]
+name = "tnc-analysis-lib"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+color-eyre = "0.6.2"
+colored = "2.0.0"
+nom = "7.1"
+serde_json = "1.0"
+lazy_static = "1.4"
+tracing = "0.1.37"
+
+[dependencies.smartcore]
+version = "0.3.1"
+features = ["ndarray-bindings", "datasets", "std_rand"]
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+
+[dependencies.polars]
+version = "0.28.0"
+features = ["describe", "to_dummies", "parquet", "lazy", "csv-file"]
+
+[dependencies.propensity-score]
+path = "../../linear-optimization/lib"
+
+[patch.crates-io]
+smartcore = { path = "../smartcore" }
+# polars-algo = { path = "../polars/polars/polars-algo/" }
+polars-arrow = { path = "../polars/polars/polars-arrow/" }
+polars-core = { path = "../polars/polars/polars-core/" }
+polars-error = { path = "../polars/polars/polars-error/" }
+polars-io = { path = "../polars/polars/polars-io/" }
+polars-lazy = { path = "../polars/polars/polars-lazy/" }
+polars-ops = { path = "../polars/polars/polars-ops/" }
+polars-row = { path = "../polars/polars/polars-row/" }
+# polars-sql = { path = "../polars/polars/polars-sql/" }
+polars-time = { path = "../polars/polars/polars-time/" }
+polars-utils = { path = "../polars/polars/polars-utils/" }
+# polars-plan = { path = "../polars/polars/polars-plan/" }

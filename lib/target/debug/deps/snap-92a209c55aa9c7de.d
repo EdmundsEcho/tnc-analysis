@@ -1,0 +1,20 @@
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/deps/snap-92a209c55aa9c7de.rmeta: /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/lib.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/bytes.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/compress.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32_table.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/decompress.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/error.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/frame.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/raw.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/read.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/tag.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/write.rs /Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/crc32_table.rs /Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/tag.rs
+
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/deps/snap-92a209c55aa9c7de.d: /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/lib.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/bytes.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/compress.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32_table.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/decompress.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/error.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/frame.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/raw.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/read.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/tag.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/write.rs /Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/crc32_table.rs /Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/tag.rs
+
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/lib.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/bytes.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/compress.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/crc32_table.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/decompress.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/error.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/frame.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/raw.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/read.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/tag.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/snap-1.1.0/src/write.rs:
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/crc32_table.rs:
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out/tag.rs:
+
+# env-dep:OUT_DIR=/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/build/snap-86df8a6827c83574/out

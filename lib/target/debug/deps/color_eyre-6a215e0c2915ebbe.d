@@ -1,0 +1,12 @@
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/deps/color_eyre-6a215e0c2915ebbe.rmeta: /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/lib.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/config.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/fmt.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/handler.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/private.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/mod.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/help.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/writers.rs
+
+/Users/edmund/Programming-Local/tnc-analysis/bin/target/debug/deps/color_eyre-6a215e0c2915ebbe.d: /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/lib.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/config.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/fmt.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/handler.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/private.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/mod.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/help.rs /Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/writers.rs
+
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/lib.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/config.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/fmt.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/handler.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/private.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/mod.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/section/help.rs:
+/Users/edmund/.cargo/registry/src/github.com-1ecc6299db9ec823/color-eyre-0.6.2/src/writers.rs:
