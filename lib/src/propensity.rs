@@ -11,13 +11,13 @@ use tracing::{event, Level};
 /// 🔑 Values must not borrow from elsewhere.  Use the builder -> cfg to
 ///    copy values as needed.
 ///
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct PropensityCfg {
-    pub target: String,
-    pub predictors: Vec<String>,
+    pub target: BinaryTargetOwned,
+    pub predictors: PredictorsOwned,
     // pub mask: Option<Mask<'a>>,
-    pub bin_count: Option<u32>,
-    pub name: Option<String>,
+    pub bin_count: u32,
+    pub name: String,
 }
 // Some(self.column("include").unwrap().bool().unwrap()),
 
@@ -28,8 +28,8 @@ pub struct PropensityCfgBuilder<'a> {
     pub target: BinaryTarget<'a>,
     pub predictors: Predictors<'a>,
     mask: Option<Mask<'a>>,
-    bin_count: Option<u32>,
-    name: Option<&'a str>,
+    bin_count: u32,
+    name: &'a str,
 }
 
 impl<'a> PropensityCfgBuilder<'a> {
@@ -38,35 +38,30 @@ impl<'a> PropensityCfgBuilder<'a> {
             target,
             predictors,
             mask: None,
-            bin_count: None,
-            name: Some("propensity"),
+            bin_count: 5,
+            name: "propensity",
         }
     }
 
     pub fn bin_count(mut self, bin_count: u32) -> Self {
-        self.bin_count = Some(bin_count);
+        self.bin_count = bin_count;
         self
     }
 
     pub fn with_name(mut self, name: &'a str) -> Self {
-        self.name = Some(name);
+        self.name = name;
         self
     }
 
     ///
-    /// Break all dependencies on Matrix, the struct this config is being used to mutate.
-    /// NEXT HERE
+    /// Todo: Used Owned versions of the builder types
     ///
     pub fn build(self) -> PropensityCfg {
-        let predictors: Vec<String> = self.predictors.iter().map(|p| p.to_string()).collect();
-        let name = match self.name {
-            None => None,
-            Some(n) => Some(n.to_string()),
-        };
+        let name = self.name.to_string();
 
         PropensityCfg {
-            target: self.target.to_string(),
-            predictors,
+            target: self.target.into(),
+            predictors: self.predictors.into(),
             // mask: self.mask,
             bin_count: self.bin_count,
             name,
@@ -77,25 +72,61 @@ impl<'a> PropensityCfgBuilder<'a> {
 ///
 /// Entry point for building the PropensityCfg.  See exit: .build().
 ///
-impl<'a> PropensityCfg {
-    pub fn builder(
+impl PropensityCfg {
+    pub fn builder<'a>(
         target: BinaryTarget<'a>,
         predictors: Predictors<'a>,
     ) -> PropensityCfgBuilder<'a> {
         PropensityCfgBuilder::new(target, predictors)
     }
+    pub fn bin_name(&self) -> String {
+        self.name.to_owned() + "_bin"
+    }
 }
 ///
-/// Owned versions for use in the final configuration
-/// Required b/c configuration cannot borrow from matrix that is being mutated.
+/// Owned versions for use in the final configuration. Required b/c configuration cannot borrow
+/// from matrix that is being mutated.
 ///
-#[derive(Debug)]
+/// Owned version of BinaryTarget used in a configuration that may have referenced the matrix.
+///
+#[derive(Debug, Clone)]
 pub struct BinaryTargetOwned {
     inner: FieldNameOwned,
 }
-#[derive(Debug)]
+impl<'a> std::convert::From<BinaryTarget<'a>> for BinaryTargetOwned {
+    fn from(value: BinaryTarget<'a>) -> Self {
+        BinaryTargetOwned {
+            inner: value.to_owned(),
+        }
+    }
+}
+impl std::fmt::Display for BinaryTargetOwned {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.inner.fmt(f)
+    }
+}
+impl BinaryTargetOwned {
+    pub fn as_str(&self) -> &str {
+        &self.inner
+    }
+}
+///
+/// Owned version of Predictors used in a configuration that may have referenced the matrix.
+///
+#[derive(Debug, Clone)]
 pub struct PredictorsOwned {
     inner: Vec<FieldNameOwned>,
+}
+impl<'a> std::convert::From<Predictors<'a>> for PredictorsOwned {
+    fn from(values: Predictors<'a>) -> Self {
+        let inner: Vec<String> = values.iter().map(|p| p.to_string()).collect();
+        PredictorsOwned { inner }
+    }
+}
+impl<'a> std::convert::Into<Vec<&'a str>> for &'a PredictorsOwned {
+    fn into(self) -> Vec<&'a str> {
+        self.inner.iter().map(|v| v.as_str()).collect()
+    }
 }
 type FieldNameOwned = String;
 ///

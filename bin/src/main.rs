@@ -16,21 +16,17 @@ const FIELD_NAMES_CFG: &str = "./res/app-cfg.json";
 fn main() -> Result<()> {
     // performance and debugging metrics
     tracing_subscriber::fmt().with_max_level(Level::INFO).init();
-
     let start = Instant::now();
 
     // let cfg: Config<PropensityScore> = read_cfg(PROPENSITY_CFG)?;
     let field_names_cfg: Config<FieldNamesCfg> = read_config(FIELD_NAMES_CFG)?;
 
-    // Future option: set a global static using lazy
-    // set_app_config(read_cfg(FIELD_NAMES_CFG)?);
-
     let matrix = Matrix::from_file(FILENAME, None)?;
 
     // print the first few lines
     let summary = matrix.describe(None)?;
-    println!("{}", &summary);
-    println!("{}", &matrix.head(Some(5)));
+    event!(Level::DEBUG, "{}", &summary);
+    event!(Level::INFO, "{}", &matrix.head(Some(5)));
 
     // initialize
     let mut matrix = matrix;
@@ -46,6 +42,7 @@ fn main() -> Result<()> {
     event!(Level::DEBUG, "{}", matrix.show_fields()?);
 
     // Configure the propensity score computation
+    // 🔑 this will be how we interact with the module from the external application.
     let cfg = PropensityCfg::builder(
         matrix.binary_target(field_names_cfg.clone()),
         matrix.predictors(field_names_cfg.clone()),
@@ -54,9 +51,9 @@ fn main() -> Result<()> {
     .bin_count(5)
     .build();
     event!(Level::DEBUG, "{:#?}", &cfg);
-    matrix.with_propensity(cfg)?;
+    let mut matrix = matrix.with_propensity(cfg.clone())?;
 
-    let view = matrix.select(["subject_idx", "propensity"])?;
+    let view = matrix.select(["subject_idx", &cfg.name, &cfg.bin_name()])?;
     event!(Level::INFO, "{}", &view.head(Some(5)));
 
     event!(Level::INFO, "Meta with propensity: {}", matrix.show_meta()?);

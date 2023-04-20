@@ -12,10 +12,7 @@ nom = "7.1"
 serde_json = "1.0"
 lazy_static = "1.4"
 tracing = "0.1.37"
-
-[dependencies.smartcore]
-version = "0.3.1"
-features = ["ndarray-bindings", "datasets", "std_rand"]
+# polars-lazy = "0.28.0"
 
 [dependencies.serde]
 version = "1.0"
@@ -29,7 +26,7 @@ features = ["describe", "to_dummies", "parquet", "lazy", "csv-file"]
 path = "../../linear-optimization/lib"
 
 [patch.crates-io]
-smartcore = { path = "../smartcore" }
+# smartcore = { path = "../smartcore" }
 # polars-algo = { path = "../polars/polars/polars-algo/" }
 polars-arrow = { path = "../polars/polars/polars-arrow/" }
 polars-core = { path = "../polars/polars/polars-core/" }

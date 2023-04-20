@@ -6,10 +6,9 @@ use polars::prelude::*;
 
 use crate::header::Header;
 // use crate::to_dummies::CategoryField;
-use crate::propensity::{build_dummies, BinaryTarget, Predictors, PropensityCfg};
+use crate::propensity::{build_dummies, BinaryTarget, Predictors, PredictorsOwned, PropensityCfg};
 use crate::to_row_dominant;
 use crate::FieldNamesCfg;
-use crate::Mask;
 use crate::{get_fuzzy_binary_target, get_fuzzy_predictors};
 
 use propensity_score::prelude::*;
@@ -101,7 +100,7 @@ impl Matrix<DataFrame> {
     ///
     pub fn to_row_dominant(
         &self,
-        columns: &Vec<String>,
+        columns: &PredictorsOwned,
         // mask: Option<&Mask<'a>>,
     ) -> Result<(Vec<f64>, usize)> {
         // select from the dataframe
@@ -112,6 +111,7 @@ impl Matrix<DataFrame> {
         }; */
         event!(Level::DEBUG, "Columns sent to build X? {:?}", &columns);
 
+        let columns: Vec<&str> = columns.into();
         let df = self.select(columns)?;
         let df = build_dummies(df, None, None)?;
 
@@ -131,23 +131,20 @@ impl Matrix<DataFrame> {
     /// Appends a propensity field to the Matrix. Requires a configuration.
     ///
     /// ```rust
-    /// pub struct PropensityCfg<'a> {
-    ///     pub target: BinaryTarget<'a>,
-    ///     pub predictors: Predictors<'a>,
-    ///     pub bin_count: Option<u32>,
-    ///     pub name: Option<&'a str>,
+    /// pub struct PropensityCfg {
+    ///     pub target: BinaryTargetOwned,
+    ///     pub predictors: PredictorsOwned,
+    ///     pub bin_count: u32,
+    ///     pub name: String,
     /// }
     /// ```
     ///
-    pub fn with_propensity(&mut self, cfg: PropensityCfg) -> Result<()> {
+    pub fn with_propensity(mut self, cfg: PropensityCfg) -> Result<Self> {
         event!(Level::DEBUG, "📋 logit cfg:\n{:?}", &cfg,);
-
-        //
-        // build the data needed to run the logit
-        // to_row_dominant will append intercept
         //
         // TODO: MAKE SURE NO NULLS
         // let (x, row_count) = self.to_row_dominant(&cfg.predictors, cfg.mask.as_ref())?;
+        //
         let (x, row_count) = self.to_row_dominant(&cfg.predictors /* None */)?;
         event!(Level::INFO, "✅ X as 1D with row count:{}", row_count);
         event!(Level::DEBUG, "{:#?}", self.show_meta()?);
@@ -179,21 +176,70 @@ impl Matrix<DataFrame> {
         // .map(|s| Ok(s.f64()?.into_iter()))
         let objective = Objective::from_vecs(x, y, row_count)?;
 
-        let cfg = CfgBuilder::new().max_iters(100).logging(false).build();
+        let optimizer_cfg = CfgBuilder::new().max_iters(100).logging(false).build();
 
-        let findings = logit::run(&objective, cfg)?;
+        let findings = logit::run(&objective, optimizer_cfg)?;
 
         event!(Level::INFO, "\n📋 logit findings\n{}", findings.report()?);
 
         // create a prediction and append to the matrix
         self.with_column(Series::new(
-            "propensity",
+            &cfg.name,
             Vec::from(
                 findings.predict(false), // binary = false, show_sample
             ),
         ))?;
 
-        Ok(())
+        let new_df = self.bin_from_column(&cfg.name, &cfg.bin_name(), None)?;
+
+        Ok(new_df)
+    }
+    ///
+    /// Generates bins from a column.  The column needs to be a continuous variable with values
+    /// between 0 and 1.
+    ///
+    /// todo: Make the bin size more dynamic.
+    ///
+    pub fn bin_from_column(
+        mut self,
+        column: &str,
+        new_column: &str,
+        _bin_count: Option<u32>,
+    ) -> Result<Self> {
+        let new_col = new_column;
+
+        let df: DataFrame = self
+            .inner
+            .lazy()
+            .with_column(
+                when(col(column).gt(0.85))
+                    .then(lit(5))
+                    .when(col(column).gt(0.8))
+                    .then(lit(4))
+                    .when(col(column).gt(0.75))
+                    .then(lit(3))
+                    .when(col(column).gt(0.3))
+                    .then(lit(2))
+                    .when(col(column).gt(0.0))
+                    .then(lit(1))
+                    .otherwise(lit(0))
+                    .alias(new_col),
+            )
+            .collect()?;
+
+        event!(
+            Level::INFO,
+            "bin counts: {:#?}",
+            df.clone()
+                .lazy()
+                .groupby([new_col])
+                .agg([count()])
+                .sort(new_col, SortOptions::default())
+                .collect()?
+        );
+        event!(Level::DEBUG, "bins sample: {:#?}", df.head(Some(5)));
+        self.inner = df;
+        Ok(self)
     }
     pub fn write_to_file_csv<P: AsRef<std::path::Path>>(&mut self, path: P) -> Result<()> {
         let mut file = std::fs::File::create(path)?;

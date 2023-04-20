@@ -1,3 +1,0 @@
-cargo:rerun-if-changed=build/main.rs
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/edmund/Programming-Local/tnc-analysis/bin/target/release/build/typenum-aca3c7b7fe63547c/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/Users/edmund/Programming-Local/tnc-analysis/bin/target/release/build/typenum-aca3c7b7fe63547c/out/op.rs
